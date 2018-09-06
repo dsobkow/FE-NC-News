@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import moment from 'moment';
+import Votes from './Votes';
 
 class Comments extends Component {
     state = {
@@ -14,7 +15,8 @@ class Comments extends Component {
                     <img className='comment_avatar' src={comment.created_by.avatar_url} onError={(e) => { e.target.src = 'https://www.chaarat.com/wp-content/uploads/2017/08/placeholder-user.png' }} alt='avatar' />
                     <div>posted by <strong>{comment.created_by.username}</strong> {moment(comment.created_at).fromNow()}</div>
                 </div><p>{comment.body}</p>
-                <div><i className="fas fa-arrow-circle-up"></i> {comment.votes} <i className="fas fa-arrow-circle-down"></i></div></div>
+                <Votes comments={comment}/>
+                </div>
             })}
         </div>
 

@@ -1,4 +1,5 @@
 const URL = 'https://d-northcoders-news-api.herokuapp.com/api';
+const axios = require('axios');
 
 export const fetchArticles = () => {
    return fetch(`${URL}/articles`)
@@ -22,4 +23,8 @@ export const fetchCommentsForArticle = (articleId) => {
     return fetch(`${URL}/articles/${articleId}/comments`)
     .then(buffer => buffer.json()) 
     .then(body => body.comments)
+}
+
+export const voteOnArticle = (id, direction, section) => {
+    return axios.put(`${URL}/${section}/${id}?vote=${direction}`);
 }

@@ -3,10 +3,12 @@ import * as api from '../api';
 import { isEqual } from 'lodash';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
+import Votes from './Votes';
 
 class Articles extends Component {
     state = {
-        articles: []
+        articles: [],
+        voteChange: 0
     }
     render() {
         return (
@@ -14,11 +16,7 @@ class Articles extends Component {
                 {this.state.articles.sort((a, b) => { return moment.utc(b.created_at).diff(moment.utc(a.created_at)) }).map((article, index) => {
                     return (
                         <div className='article' key={index}>
-                            <div className='votes'>
-                                <NavLink to={`/articles/${article._id}?vote=up`}><i className="fas fa-arrow-circle-up"></i></NavLink>
-                                <p className='vote'>{article.votes}</p>
-                                <NavLink to={`/articles/${article._id}?vote=up`}><i className="fas fa-arrow-circle-down"></i></NavLink>
-                            </div>
+                            <Votes articles={article} />
                             <div className='user'>
                                 <img className='avatar' src={article.created_by.avatar_url} onError={(e) => { e.target.src = 'https://www.chaarat.com/wp-content/uploads/2017/08/placeholder-user.png' }} alt='avatar' />
                                 <div>posted by <strong>{article.created_by.username}</strong> {moment(article.created_at).fromNow()}</div>
