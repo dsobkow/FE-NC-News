@@ -2,27 +2,27 @@ const URL = 'https://d-northcoders-news-api.herokuapp.com/api';
 const axios = require('axios');
 
 export const fetchArticles = () => {
-   return fetch(`${URL}/articles`)
-    .then(buffer => buffer.json()) 
-    .then(body => body.articlesWithComments)
+    return fetch(`${URL}/articles`)
+        .then(buffer => buffer.json())
+        .then(body => body.articlesWithComments)
 }
 
 export const fetchArticlesByTopic = (topic) => {
-   return fetch(`${URL}/topics/${topic}/articles`)
-    .then(buffer => buffer.json()) 
-    .then(body => body.articlesWithComments)
+    return fetch(`${URL}/topics/${topic}/articles`)
+        .then(buffer => buffer.json())
+        .then(body => body.articlesWithComments)
 }
 
 export const fetchArticleById = (articleId) => {
     return fetch(`${URL}/articles/${articleId}`)
-    .then(buffer => buffer.json()) 
-    .then(body => body.article)
+        .then(buffer => buffer.json())
+        .then(body => body.article)
 }
 
 export const fetchCommentsForArticle = (articleId) => {
     return fetch(`${URL}/articles/${articleId}/comments`)
-    .then(buffer => buffer.json()) 
-    .then(body => body.comments)
+        .then(buffer => buffer.json())
+        .then(body => body.comments)
 }
 
 export const voteOnArticle = (id, direction, section) => {
@@ -30,12 +30,16 @@ export const voteOnArticle = (id, direction, section) => {
 }
 
 export const addNewComment = (articleId, newComment) => {
-    return axios({method: 'post', url: `${URL}/articles/${articleId}/comments`, data: newComment})
-    .catch(console.log)
+    return axios({ method: 'post', url: `${URL}/articles/${articleId}/comments`, data: newComment })
+        .catch(console.log)
 }
 
 export const getUserData = (username) => {
     return fetch(`${URL}/users/${username}`)
-    .then(buffer => buffer.json()) 
-    .then(body => body.user)
+        .then(buffer => buffer.json())
+        .then(body => body.user)
+}
+
+export const deleteComment = (commentId) => {
+    return axios.delete(`${URL}/comments/${commentId}`)
 }

@@ -3,7 +3,7 @@ import './App.css';
 import { Route, NavLink, Switch } from 'react-router-dom';
 import Articles from './components/Articles';
 import Article from './components/Article';
-//import User from './components/User';
+import CurrentUser from './components/CurrentUser';
 const logo = require('./logo.png')
 
 class App extends Component {
@@ -14,6 +14,7 @@ class App extends Component {
     return (
       <div className="App">
         <img className='nc_logo' src={logo} alt='northcoders logo' />
+        <CurrentUser user={this.state.loggedIn} />
         <h1>NORTHCODERS NEWS</h1>
         <div className='topics'>
           <p className='browse'> Browse by topics:</p>

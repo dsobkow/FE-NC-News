@@ -15,7 +15,7 @@ class Article extends Component {
     render() {
         return <div><div>{this.state.page_loaded ?
             <div className='single_article' key={this.state.article._id}>
-                <Votes articles={this.state.article}/>
+                <Votes obj={this.state.article} section='articles' />
                 <div className='user'>
                     <img className='avatar' src={this.state.article.created_by.avatar_url} onError={(e) => { e.target.src = 'https://www.chaarat.com/wp-content/uploads/2017/08/placeholder-user.png' }} alt='avatar' />
                     <div>posted by <strong>{this.state.article.created_by.username}</strong> {moment(this.state.article.created_at).fromNow()}</div>
@@ -26,8 +26,8 @@ class Article extends Component {
                 </div>
                 <p className='comment_count'><strong>{this.state.article.comments} comments</strong></p>
                 <p className='topic_info'>{this.state.article.belongs_to}</p></div> : null}</div>
-                <AddComment saveNewComment={this.saveNewComment} user={this.props.user} articleId={this.state.article._id}/>
-            {this.state.page_loaded ? <Comments articleId={this.state.article._id} newComment={this.state.newComment}/> : null}
+            <AddComment saveNewComment={this.saveNewComment} user={this.props.user} articleId={this.state.article._id} />
+            {this.state.page_loaded ? <Comments articleId={this.state.article._id} newComment={this.state.newComment} user={this.props.user} /> : null}
         </div>
     }
 
