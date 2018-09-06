@@ -3,11 +3,13 @@ import * as api from '../api';
 import moment from 'moment';
 import Comments from './Comments';
 import Votes from './Votes';
+import AddComment from './AddComment';
 
 class Article extends Component {
     state = {
         article: {},
-        page_loaded: false
+        page_loaded: false,
+        newComment: {}
     }
 
     render() {
@@ -24,7 +26,8 @@ class Article extends Component {
                 </div>
                 <p className='comment_count'><strong>{this.state.article.comments} comments</strong></p>
                 <p className='topic_info'>{this.state.article.belongs_to}</p></div> : null}</div>
-            {this.state.page_loaded ? <Comments articleId={this.state.article._id} /> : null}
+                <AddComment saveNewComment={this.saveNewComment} user={this.props.user} articleId={this.state.article._id}/>
+            {this.state.page_loaded ? <Comments articleId={this.state.article._id} newComment={this.state.newComment}/> : null}
         </div>
     }
 
@@ -42,6 +45,13 @@ class Article extends Component {
                 })
             })
             .catch(console.log)
+    }
+
+    saveNewComment = (newComment) => {
+        this.setState({
+            ...this.state,
+            newComment
+        })
     }
 }
 

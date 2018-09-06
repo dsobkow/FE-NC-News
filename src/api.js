@@ -28,3 +28,14 @@ export const fetchCommentsForArticle = (articleId) => {
 export const voteOnArticle = (id, direction, section) => {
     return axios.put(`${URL}/${section}/${id}?vote=${direction}`);
 }
+
+export const addNewComment = (articleId, newComment) => {
+    return axios({method: 'post', url: `${URL}/articles/${articleId}/comments`, data: newComment})
+    .catch(console.log)
+}
+
+export const getUserData = (username) => {
+    return fetch(`${URL}/users/${username}`)
+    .then(buffer => buffer.json()) 
+    .then(body => body.user)
+}

@@ -138,7 +138,8 @@ margin: 2vw
   padding: 2vw 4vw;
   border: solid #bdbdbd;
   background-color: #eeeeee;
-  font-size: 1.5vw
+  font-size: 1.7vw;
+  text-align: left
 }
 
 .comment_avatar {
@@ -159,7 +160,8 @@ margin: 2vw
 }
 
 .voted {
-  margin: 0
+  margin: 0;
+  text-align: center;
 }
 
 .articles_undo_button {
@@ -186,7 +188,8 @@ margin: 2vw
 
   .comments_vote {
     margin: 0vw;
-    padding: 0vw
+    padding: 0vw;
+    text-align: center;
   }
 
   #comments_up {
@@ -209,4 +212,61 @@ margin: 2vw
     border: groove 1px #bdbdbd;
     font-size: 1.5vw;
     font-weight: 400;
+  }
+
+  .add_comment {
+    margin: 1vw 9vw;
+    padding: 2vw 4vw;
+    border: solid #bdbdbd;
+    background-color: #eeeeee;
+    font-size: 1.7vw;
+    text-align: left;
+  }
+
+  .comment_input {
+    width: 93%;
+    text-align: left;
+    padding: 1vw 1vw 5vw 1vw;
+    margin: 0vw 1vw;
+    font-size: 2vw;
+    border: solid #bdbdbd;;
+  }
+
+  .comment_input:focus {
+    outline: none;
+  }
+
+  .submit_comment {
+    font-size: 1.7vw;
+    border-radius: 1vw;
+    padding: 0.5vw 1vw;
+    border: solid #bdbdbd;
+    cursor: pointer;
+  }
+
+  .submit_comment:focus {
+    outline: none
+  }
+
+  .submit_comment:hover {
+    background:gray;
+    border: solid white;
+    color: white;
+  }
+
+  .button_div {
+    text-align: right;
+    margin: 1vw 4vw 0vw 0vw
+  }
+
+  label {
+    margin-right: 10vw;
+    margin-left: 1vw;
+    font-size: 2vw;
+  }
+
+  .comment_added {
+    margin: 1vw 0vw 0vw 1vw;
+    font-size: 2vw;
+    color: #f4511e;
   }

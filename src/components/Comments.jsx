@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../api';
 import moment from 'moment';
 import Votes from './Votes';
+import { isEqual } from 'lodash';
 
 class Comments extends Component {
     state = {
@@ -24,6 +25,17 @@ class Comments extends Component {
 
     componentDidMount = () => {
         this.fetchComments()
+    }
+
+    componentDidUpdate = (prevProps) => {
+        if (!isEqual(this.props.newComment, prevProps.newComment)) {
+            this.setState({
+                comments: [
+                    ...this.state.comments,
+                    this.props.newComment
+                ]
+            })
+        }
     }
 
     fetchComments = () => {

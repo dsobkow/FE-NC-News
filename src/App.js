@@ -19,7 +19,8 @@ class App extends Component {
           <p className='browse'> Browse by topics:</p>
           <NavLink className='topic' to='/topics/football'>Football</NavLink>{' || '}
           <NavLink className='topic' to='/topics/coding'>Coding</NavLink>{' || '}
-          <NavLink className='topic' to='/topics/cooking'>Cooking</NavLink>
+          <NavLink className='topic' to='/topics/cooking'>Cooking</NavLink>{' || '}
+          <NavLink className='topic' to='/articles'>All</NavLink>
           <Switch>
             <Route exact path='/' component={Articles} />
             <Route exact path='/articles' component={Articles} />
