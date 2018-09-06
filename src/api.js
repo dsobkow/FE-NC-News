@@ -11,3 +11,15 @@ export const fetchArticlesByTopic = (topic) => {
     .then(buffer => buffer.json()) 
     .then(body => body.articlesWithComments)
 }
+
+export const fetchArticleById = (articleId) => {
+    return fetch(`${URL}/articles/${articleId}`)
+    .then(buffer => buffer.json()) 
+    .then(body => body.article)
+}
+
+export const fetchCommentsForArticle = (articleId) => {
+    return fetch(`${URL}/articles/${articleId}/comments`)
+    .then(buffer => buffer.json()) 
+    .then(body => body.comments)
+}

@@ -53,6 +53,18 @@ font-size: 4vw;
   'Comments Comments Topic Topic';
 }
 
+.single_article {
+  margin: 2vw 5vw 0vw 5vw;
+  padding: 2vw 4vw;
+  border: solid #bdbdbd;
+  background-color: white;
+  display: grid;
+  grid-template-areas: 
+  'User User User User'
+  'Votes Article Article Article'
+  'Comments Comments Topic Topic';
+}
+
 .article_body {
   grid-area: Article;
   margin-bottom: 2vw;
@@ -106,8 +118,33 @@ margin: 1vw 3vw 1vw 0vw;
   font-size: 2vw;
 }
 
+.single_article_title {
+  text-decoration: none;
+  color: black;
+  font-size: 2vw;
+}
+
 .article_title:hover {
   color: #d50000;
   transform: scale(1.6);
   font-size: 2.3vw
+}
+.comments {
+margin: 2vw
+}
+
+.comment {
+  margin: -1vw 7vw;
+  padding: 2vw 4vw;
+  border: solid #bdbdbd;
+  background-color: #eeeeee;
+  font-size: 1.5vw
+}
+
+.comment_avatar {
+  width: 3vw;
+  height: 3vw;
+  border-radius: 100%;
+  float: left;
+  margin-right: 1vw;
 }
