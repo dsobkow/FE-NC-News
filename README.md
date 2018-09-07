@@ -12,11 +12,11 @@ Clone this repository using command below:
 
 ## Installation 
 
-Navigate to cloned repository and install all dependencies and dev dependencies on your computer:
+Navigate to cloned repository and install all dependencies on your computer:
 
 `$ npm install`
 
-This will install the following dependencies:
+This will install the following packages:
 
 * axios: ^0.18.0
 * lodash: ^4.17.10
