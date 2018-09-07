@@ -5,6 +5,7 @@ import Comments from './Comments';
 import Votes from './Votes';
 import AddComment from './AddComment';
 import { isEqual } from 'lodash';
+import { NavLink } from 'react-router-dom';
 
 class Article extends Component {
     state = {
@@ -19,7 +20,7 @@ class Article extends Component {
                 <Votes obj={this.state.article} section='articles' />
                 <div className='user'>
                     <img className='avatar' src={this.state.article.created_by.avatar_url} onError={(e) => { e.target.src = 'https://www.chaarat.com/wp-content/uploads/2017/08/placeholder-user.png' }} alt='avatar' />
-                    <div>posted by <strong>{this.state.article.created_by.username}</strong> {moment(this.state.article.created_at).fromNow()}</div>
+                    <div>posted by <NavLink className='link' to={`/users/${this.state.article.created_by.username}`}><strong>{this.state.article.created_by.username}</strong></NavLink> {moment(this.state.article.created_at).fromNow()}</div>
                 </div>
                 <div className='article_body'>
                     <p className='single_article_title'><strong><u>{this.state.article.title}</u></strong></p>

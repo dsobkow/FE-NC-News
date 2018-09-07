@@ -358,6 +358,10 @@ margin: 2vw
     color: white;
   }
 
+  .add_art_btn:focus {
+    outline: none;
+  }
+
   .user_avatar {
     border-radius: 100%;
     width: 10vw;
@@ -389,4 +393,9 @@ margin: 2vw
     background-color: #eeeeee;
     margin: 1vw 5vw;
     font-size: 2.3vw;
+  }
+
+  .link {
+    text-decoration: none;
+    color: black;
   }
