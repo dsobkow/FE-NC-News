@@ -4,6 +4,7 @@ import { Route, NavLink, Switch } from 'react-router-dom';
 import Articles from './components/Articles';
 import Article from './components/Article';
 import CurrentUser from './components/CurrentUser';
+import User from './components/User';
 const logo = require('./logo.png')
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
             <Route exact path='/articles' component={Articles} />
             <Route path='/topics/:topic' render={({ match }) => <Articles user={this.state.loggedIn} match={match} />} />
             <Route exact path='/articles/:article_id' render={({ match }) => <Article user={this.state.loggedIn} match={match} />} />
+            <Route path='/users/:username' render={({ match }) => <User match={match}/>}/>
           </Switch>
         </div>
       </div>
