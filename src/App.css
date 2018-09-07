@@ -11,7 +11,7 @@ body {
   padding: 0vw 2vw;
 }
 
-h1 {
+.app_name {
 margin: 0 auto;
 width: 60%;
 padding-top: 2vw;
@@ -398,4 +398,13 @@ margin: 2vw
   .link {
     text-decoration: none;
     color: black;
+  }
+
+  .error {
+    margin: 5vw;
+    color:#424242;
+  }
+
+  h1 {
+    margin: 0;
   }

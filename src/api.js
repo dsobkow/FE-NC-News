@@ -1,5 +1,6 @@
 const URL = 'https://d-northcoders-news-api.herokuapp.com/api';
 const axios = require('axios');
+const errorCodes = [400, 404, 500];
 
 export const fetchArticles = () => {
     return fetch(`${URL}/articles`)
@@ -9,15 +10,20 @@ export const fetchArticles = () => {
 
 export const fetchArticlesByTopic = (topic) => {
     return fetch(`${URL}/topics/${topic}/articles`)
-        .then(buffer => buffer.json())
+        .then(buffer => {
+            if (errorCodes.includes(buffer.status)) throw Error(buffer.statusText);
+            else return buffer.json()
+        })
         .then(body => body.articlesWithComments)
 }
 
 export const fetchArticleById = (articleId) => {
     return fetch(`${URL}/articles/${articleId}`)
-        .then(buffer => buffer.json())
+        .then(buffer => {
+            if (errorCodes.includes(buffer.status)) throw Error(buffer.statusText);
+            else return buffer.json()
+        })
         .then(body => body.article)
-        .catch(err => err)
 }
 
 export const fetchCommentsForArticle = (articleId) => {
@@ -36,7 +42,10 @@ export const addNewComment = (articleId, newComment) => {
 
 export const getUserData = (username) => {
     return fetch(`${URL}/users/${username}`)
-        .then(buffer => buffer.json())
+        .then(buffer => {
+            if (errorCodes.includes(buffer.status)) throw Error(buffer.statusText);
+            else return buffer.json()
+        })
         .then(body => body.user)
 }
 

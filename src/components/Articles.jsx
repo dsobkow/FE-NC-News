@@ -5,18 +5,21 @@ import moment from 'moment';
 import { NavLink } from 'react-router-dom';
 import Votes from './Votes';
 import AddArticle from './AddArticle';
+import Error from './Error';
 
 class Articles extends Component {
     state = {
         articles: [],
         voteChange: 0,
-        add_article: false
+        add_article: false,
+        hasError: false,
+        error_message: ''
     }
     render() {
         const { topic } = this.props.match.params;
         return (
-            <div>
-                {!this.state.add_article && topic? <button className='add_art_btn' onClick={this.showAddArticleForm}>Add new article</button> : null}
+            <div>{this.state.hasError ? <Error message={this.state.error_message}/> :
+                <div>{!this.state.add_article && topic? <button className='add_art_btn' onClick={this.showAddArticleForm}>Add new article</button> : null}
                 {this.state.add_article && topic ? <AddArticle user={this.props.user} topic={topic} saveNewArticle={this.saveNewArticle} /> : null}
                 <div className='articles'>
                     {this.state.articles.sort((a, b) => { return moment.utc(b.created_at).diff(moment.utc(a.created_at)) }).map((article, index) => {
@@ -36,7 +39,7 @@ class Articles extends Component {
                         )
                     })}
                 </div>
-            </div>
+            </div>}</div>
         )
     }
 
@@ -47,7 +50,7 @@ class Articles extends Component {
     componentDidUpdate = (prevProps) => {
         if (!isEqual(this.props.match.params, prevProps.match.params)) {
             this.fetchArticles()
-            this.setState({add_article: false})
+            this.setState({add_article: false, hasError: false})
         }
     }
 
@@ -57,12 +60,22 @@ class Articles extends Component {
             .then(articles => {
                 this.setState({ articles })
             })
-            .catch(console.log)
+            .catch(err => {
+                this.setState({
+                    hasError: true,
+                    error_message: err.message
+                })
+            })
             : api.fetchArticles()
                 .then(articles => {
                     this.setState({ add_article: false, articles })
                 })
-                .catch(console.log)
+                .catch(err => {
+                    this.setState({
+                        hasError: true,
+                        error_message: err.message
+                    })
+                })
     }
 
     saveNewArticle = (article) => {

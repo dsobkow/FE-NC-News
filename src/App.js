@@ -16,7 +16,7 @@ class App extends Component {
       <div className="App">
         <img className='nc_logo' src={logo} alt='northcoders logo' />
         <CurrentUser user={this.state.loggedIn} />
-        <h1>NORTHCODERS NEWS</h1>
+        <h1 className='app_name'>NORTHCODERS NEWS</h1>
         <div className='topics'>
           <p className='browse'> Browse by topics:</p>
           <NavLink className='topic' to='/topics/football'>Football</NavLink>{' || '}

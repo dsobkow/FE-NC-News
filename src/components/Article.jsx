@@ -4,6 +4,7 @@ import moment from 'moment';
 import Comments from './Comments';
 import Votes from './Votes';
 import AddComment from './AddComment';
+import Error from './Error';
 import { isEqual } from 'lodash';
 import { NavLink } from 'react-router-dom';
 
@@ -11,11 +12,13 @@ class Article extends Component {
     state = {
         article: {},
         page_loaded: false,
-        comments: []
+        comments: [],
+        hasError: false,
+        error_message: ''
     }
 
     render() {
-        return <div><div>{this.state.page_loaded ?
+        return <div>{this.state.hasError ? <Error message={this.state.error_message}/> : <div><div>{this.state.page_loaded ?
             <div className='single_article' key={this.state.article._id}>
                 <Votes obj={this.state.article} section='articles' />
                 <div className='user'>
@@ -30,7 +33,7 @@ class Article extends Component {
                 <p className='topic_info'>{this.state.article.belongs_to}</p></div> : null}</div>
             <AddComment saveNewComment={this.saveNewComment} user={this.props.user} articleId={this.state.article._id} />
             {this.state.page_loaded ? <Comments articleId={this.state.article._id} comments={this.state.comments} user={this.props.user} /> : null}
-        </div>
+        </div> } </div>
     }
 
     componentDidMount = () => {
@@ -47,7 +50,12 @@ class Article extends Component {
                     article
                 })
             })
-            .catch(console.log)
+            .catch(err => {
+                this.setState({
+                    hasError: true,
+                    error_message: err.message
+                })
+            })
     }
 
     componentDidUpdate = (prevProps) => {
@@ -70,7 +78,7 @@ class Article extends Component {
                     comments
                 })
             })
-            .catch(console.log)
+            
     }
 
     saveNewComment = (newComment) => {

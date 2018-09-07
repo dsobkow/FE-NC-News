@@ -30,7 +30,7 @@ handleTitleInput = (event) => {
 }
 
  addArticle = () => {
-    if (this.state.article_body !== '') {
+    if (this.state.article_body !== '' && this.state.article_title !== '') {
     api.getUserData(this.props.user)
         .then(user => {
             const newArticle = {
