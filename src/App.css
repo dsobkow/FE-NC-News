@@ -196,7 +196,7 @@ margin: 2vw
   }
   
   .comments_vote_arrow:hover {
-    color: #d50000;
+    color: grey;
   }
 
   .comments_vote {
@@ -242,7 +242,7 @@ margin: 2vw
     padding: 1vw 1vw 5vw 1vw;
     margin: 0vw 1vw;
     font-size: 2vw;
-    border: solid #bdbdbd;;
+    border: solid #bdbdbd;
   }
 
   .comment_input:focus {
@@ -263,7 +263,7 @@ margin: 2vw
 
   .submit_comment:hover {
     background:gray;
-    border: solid white;
+    border: solid gray;
     color: white;
   }
 
@@ -282,4 +282,66 @@ margin: 2vw
     margin: 1vw 0vw 0vw 1vw;
     font-size: 2vw;
     color: #f4511e;
+  }
+
+  .delete_button {
+    font-size: 1.5vw;
+    padding: 0.3vw 0.5vw;
+    border-radius: 1vw;
+    border: solid #bdbdbd;
+    cursor: pointer;
+  }
+
+  .delete_button:hover {
+    background:gray;
+    border: solid gray;
+    color: white;
+  }
+
+  .delete_button:focus {
+    outline: none;
+  }
+
+  .add_article {
+    margin: 5vw 5vw 1vw 5vw;
+    background-color: #f5f5f5;
+    border: solid #bdbdbd;
+    padding: 1vw
+  }
+
+  .add_article_title {
+    width: 80%;
+    text-align: left;
+    margin: 0vw 1vw;
+    font-size: 2vw;
+    border: solid #bdbdbd;
+    height: 3vw;
+  }
+
+  .add_article_body {
+    width: 80%;
+    text-align: left;
+    padding: 1vw 1vw 5vw 1vw;
+    margin: 0vw 1vw;
+    border: solid #bdbdbd;
+  }
+
+  .article_label {
+    float:left;
+    margin-left: 10vw
+  }
+
+  .add_art_btn {
+    margin-top: 2vw;
+    font-size: 2.5vw;
+    padding: 0.5vw 1vw;
+    border-radius: 1vw;
+    border: solid #bdbdbd;
+    cursor: pointer;
+  }
+
+  .add_art_btn:hover {
+    background:gray;
+    border: solid gray;
+    color: white;
   }

@@ -22,6 +22,7 @@ class AddComment extends Component {
     }
 
     addComment = () => {
+        if (this.state.comment_body !== '') {
         api.getUserData(this.props.user)
             .then(user => {
                 const newComment = {
@@ -35,9 +36,16 @@ class AddComment extends Component {
                             comment_added: true,
                             comment_body: ''
                         })
+                        setTimeout(() => {
+                            this.setState({
+                                comment_added: false
+                            })
+                        }, 3000)
+                        
                         this.props.saveNewComment(comment.data.comment_added)
                     })
             })
+        }
     }
 }
 

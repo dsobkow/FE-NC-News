@@ -4,12 +4,13 @@ import moment from 'moment';
 import Comments from './Comments';
 import Votes from './Votes';
 import AddComment from './AddComment';
+import { isEqual } from 'lodash';
 
 class Article extends Component {
     state = {
         article: {},
         page_loaded: false,
-        newComment: {}
+        comments: []
     }
 
     render() {
@@ -27,12 +28,13 @@ class Article extends Component {
                 <p className='comment_count'><strong>{this.state.article.comments} comments</strong></p>
                 <p className='topic_info'>{this.state.article.belongs_to}</p></div> : null}</div>
             <AddComment saveNewComment={this.saveNewComment} user={this.props.user} articleId={this.state.article._id} />
-            {this.state.page_loaded ? <Comments articleId={this.state.article._id} newComment={this.state.newComment} user={this.props.user} /> : null}
+            {this.state.page_loaded ? <Comments articleId={this.state.article._id} comments={this.state.comments} user={this.props.user} /> : null}
         </div>
     }
 
     componentDidMount = () => {
         this.fetchArticle();
+        this.fetchComments();
     }
 
     fetchArticle = () => {
@@ -47,11 +49,39 @@ class Article extends Component {
             .catch(console.log)
     }
 
+    componentDidUpdate = (prevProps) => {
+        if (!isEqual(this.props.newComment, prevProps.newComment)) {
+            this.setState({
+                ...this.state,
+                comments: [
+                    ...this.state.comments,
+                    this.props.newComment
+                ]
+            })
+        }
+    }
+
+    fetchComments = () => {
+        const { article_id } = this.props.match.params;
+        api.fetchCommentsForArticle(article_id)
+            .then(comments => {
+                this.setState({
+                    comments
+                })
+            })
+            .catch(console.log)
+    }
+
     saveNewComment = (newComment) => {
-        this.setState({
-            ...this.state,
-            newComment
-        })
+        if (this.state.comments) {
+            this.setState({
+                comments: [...this.state.comments, newComment]
+            })
+        } else {
+            this.setState({
+                comments: [newComment]
+            })
+        }
     }
 }
 

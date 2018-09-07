@@ -17,6 +17,7 @@ export const fetchArticleById = (articleId) => {
     return fetch(`${URL}/articles/${articleId}`)
         .then(buffer => buffer.json())
         .then(body => body.article)
+        .catch(err => err)
 }
 
 export const fetchCommentsForArticle = (articleId) => {
@@ -31,7 +32,6 @@ export const voteOnArticle = (id, direction, section) => {
 
 export const addNewComment = (articleId, newComment) => {
     return axios({ method: 'post', url: `${URL}/articles/${articleId}/comments`, data: newComment })
-        .catch(console.log)
 }
 
 export const getUserData = (username) => {
@@ -42,4 +42,8 @@ export const getUserData = (username) => {
 
 export const deleteComment = (commentId) => {
     return axios.delete(`${URL}/comments/${commentId}`)
+}
+
+export const addNewArticle = (topic, newArticle) => {
+    return axios({ method: 'post', url: `${URL}/topics/${topic}/articles`, data: newArticle })
 }
