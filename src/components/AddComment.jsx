@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+import propTypes from 'prop-types';
 
 class AddComment extends Component {
     state = {
@@ -23,30 +24,35 @@ class AddComment extends Component {
 
     addComment = () => {
         if (this.state.comment_body !== '') {
-        api.getUserData(this.props.user)
-            .then(user => {
-                const newComment = {
-                    body: this.state.comment_body,
-                    created_by: user._id,
-                    belongs_to: this.props.articleId
-                }
-                api.addNewComment(this.props.articleId, newComment)
-                    .then((comment) => {
-                        this.setState({
-                            comment_added: true,
-                            comment_body: ''
-                        })
-                        setTimeout(() => {
-                            this.setState({
-                                comment_added: false
-                            })
-                        }, 3000)
-                        
-                        this.props.saveNewComment(comment.data.comment_added)
+            api.getUserData(this.props.user)
+                .then(user => {
+                    const newComment = {
+                        body: this.state.comment_body,
+                        created_by: user._id,
+                        belongs_to: this.props.articleId
+                    }
+                    return api.addNewComment(this.props.articleId, newComment)
+                })
+                .then((comment) => {
+                    this.setState({
+                        comment_added: true,
+                        comment_body: ''
                     })
-            })
+                    setTimeout(() => {
+                        this.setState({
+                            comment_added: false
+                        })
+                    }, 3000)
+                    this.props.saveNewComment(comment)
+                })
         }
     }
+}
+
+AddComment.propTypes = {
+    saveNewComment: propTypes.func,
+    user: propTypes.string,
+    articleId: propTypes.string
 }
 
 export default AddComment;

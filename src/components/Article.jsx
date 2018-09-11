@@ -7,6 +7,7 @@ import AddComment from './AddComment';
 import Error from './Error';
 import { isEqual } from 'lodash';
 import { NavLink } from 'react-router-dom';
+import propTypes from 'prop-types';
 
 class Article extends Component {
     state = {
@@ -92,6 +93,10 @@ class Article extends Component {
             })
         }
     }
+}
+
+Article.propTypes = {
+    user: propTypes.string
 }
 
 export default Article;

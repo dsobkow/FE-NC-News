@@ -21,20 +21,20 @@ font-size: 4.5vw;
 
 .topics {
   padding: 1vw;
-  font-size: 2vw;
+  font-size: 3vw;
 }
 
 .topic {
   text-decoration: none;
   color: black;
   transition: 0.3s;
-  font-size: 2vw;
+  font-size: 3vw;
 }
 
 .topic:hover {
   color: #d50000;
   transform: scale(1.6);
-  font-size: 2.3vw
+  font-size: 3.3vw
 }
 
 .user_link {
@@ -59,6 +59,7 @@ font-size: 4.5vw;
   border: solid lightgray;
   background-color: white;
   display: grid;
+  font-size: 2vw;
   grid-template-areas: 
   'User User User User'
   'Votes Article Article Article'
@@ -104,7 +105,8 @@ font-size: 4.5vw;
 
 .current_user {
   text-align: right;
-  margin: 1vw 1vw 3vw 1vw
+  margin: 1vw 1vw 3vw 1vw;
+  font-size: 2vw;
 }
 
 .user {
@@ -333,9 +335,10 @@ margin: 2vw
   .add_article_body {
     width: 80%;
     text-align: left;
-    padding: 1vw 1vw 5vw 1vw;
+    padding: 1vw 1vw 30vw 1vw;
     margin: 0vw 1vw;
     border: solid #bdbdbd;
+    font-size: 2vw
   }
 
   .article_label {
@@ -407,4 +410,29 @@ margin: 2vw
 
   h1 {
     margin: 0;
+  }
+
+  @media screen and (max-width:1000px) {
+    body, .article, .user_link, .article_title, .add_art_btn, .comment, .comments_voting, label, .submit_comment, .comment_input, .articles_vote, .comment_added, .delete_button, .article_label, .add_article, .add_article_title, .add_article_body {
+      font-size: 3vw;
+    }
+
+    .topics, .topic {
+      font-size: 4vw;
+    }
+
+    .nc_logo {
+      width: 15%
+    }
+    .app_name {
+      font-size: 6vw;
+    }
+
+    .user_link:hover, .article_title:hover, .single_article, .single_article_title, .user_profile, .user_activity {
+      font-size: 3.5vw;
+    }
+
+    .topic:hover {
+      font-size: 4.5vw;
+    }
   }

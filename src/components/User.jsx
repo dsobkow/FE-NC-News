@@ -59,7 +59,6 @@ class User extends Component {
         })
         .then(() => this.setState({article_count: articleCount, page_loaded: true}))
     }
-
 }
 
 export default User;

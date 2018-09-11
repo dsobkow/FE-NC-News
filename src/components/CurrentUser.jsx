@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import { NavLink } from 'react-router-dom';
+import propTypes from 'prop-types';
 
 class CurrentUser extends Component {
     state = {
@@ -17,7 +18,10 @@ class CurrentUser extends Component {
                 this.setState({ user })
             })
     }
+}
 
+CurrentUser.propTypes = {
+    user: propTypes.string
 }
 
 export default CurrentUser;

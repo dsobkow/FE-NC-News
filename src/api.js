@@ -1,5 +1,4 @@
 const URL = 'https://d-northcoders-news-api.herokuapp.com/api';
-const axios = require('axios');
 const errorCodes = [400, 404, 500];
 
 export const fetchArticles = () => {
@@ -29,15 +28,26 @@ export const fetchArticleById = (articleId) => {
 export const fetchCommentsForArticle = (articleId) => {
     return fetch(`${URL}/articles/${articleId}/comments`)
         .then(buffer => buffer.json())
-        .then(body => body.comments)
+        .then(body => {
+            if (body.comments) return body.comments
+        })
 }
 
 export const voteOnArticle = (id, direction, section) => {
-    return axios.put(`${URL}/${section}/${id}?vote=${direction}`);
+    return fetch(`${URL}/${section}/${id}?vote=${direction}`, { method: 'put' });
 }
 
 export const addNewComment = (articleId, newComment) => {
-    return axios({ method: 'post', url: `${URL}/articles/${articleId}/comments`, data: newComment })
+    return fetch(`${URL}/articles/${articleId}/comments`, {
+        method: 'post',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newComment)
+    })
+        .then(buffer => buffer.json())
+        .then(body => body.comment_added)
 }
 
 export const getUserData = (username) => {
@@ -50,9 +60,20 @@ export const getUserData = (username) => {
 }
 
 export const deleteComment = (commentId) => {
-    return axios.delete(`${URL}/comments/${commentId}`)
+    return fetch(`${URL}/comments/${commentId}`, { method: 'delete' })
+        .then(buffer => buffer.json())
+        .then(body => body.comment_deleted)
 }
 
 export const addNewArticle = (topic, newArticle) => {
-    return axios({ method: 'post', url: `${URL}/topics/${topic}/articles`, data: newArticle })
+    return fetch(`${URL}/topics/${topic}/articles`, {
+        method: 'post',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newArticle)
+    })
+        .then(buffer => buffer.json())
+        .then(body => body.article_added)
 }

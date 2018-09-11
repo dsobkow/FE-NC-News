@@ -4,27 +4,25 @@ import { isEqual } from 'lodash';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
 import Votes from './Votes';
-import AddArticle from './AddArticle';
 import Error from './Error';
 
 class Articles extends Component {
     state = {
         articles: [],
-        voteChange: 0,
-        add_article: false,
         hasError: false,
         error_message: ''
     }
     render() {
         const { topic } = this.props.match.params;
+        const copyOfArticles = this.state.articles;
         return (
             <div>{this.state.hasError ? <Error message={this.state.error_message}/> :
-                <div>{!this.state.add_article && topic? <button className='add_art_btn' onClick={this.showAddArticleForm}>Add new article</button> : null}
-                {this.state.add_article && topic ? <AddArticle user={this.props.user} topic={topic} saveNewArticle={this.saveNewArticle} /> : null}
+                <div>{topic? <NavLink to={`/topics/${topic}/addarticle`}><button className='add_art_btn' onClick={this.showAddArticleForm}>Add new article</button></NavLink> : null}
                 <div className='articles'>
-                    {this.state.articles.sort((a, b) => { return moment.utc(b.created_at).diff(moment.utc(a.created_at)) }).map((article, index) => {
+                    {copyOfArticles.sort((a, b) => { return moment.utc(b.created_at).diff(moment.utc(a.created_at)) }).map(article => {
+                        const body = article.body.slice(0, 100) + '...';
                         return (
-                            <div className='article' key={index}>
+                            <div className='article' key={article._id}>
                                 <Votes obj={article} section='articles' />
                                 <div className='user'>
                                     <img className='avatar' src={article.created_by.avatar_url} onError={(e) => { e.target.src = 'https://www.chaarat.com/wp-content/uploads/2017/08/placeholder-user.png' }} alt='avatar' />
@@ -32,7 +30,7 @@ class Articles extends Component {
                                 </div>
                                 <div className='article_body'>
                                     <p><NavLink className='article_title' to={`/articles/${article._id}`}><strong><u>{article.title}</u></strong></NavLink></p>
-                                    <p>{article.body}</p>
+                                    <p>{body}<NavLink className='article_title' to={`/articles/${article._id}`}><strong>READ MORE</strong></NavLink></p>
                                 </div>
                                 <p className='comment_count'>{article.comments} comments</p>
                                 <p className='topic_info'>{article.belongs_to}</p></div>
@@ -50,7 +48,7 @@ class Articles extends Component {
     componentDidUpdate = (prevProps) => {
         if (!isEqual(this.props.match.params, prevProps.match.params)) {
             this.fetchArticles()
-            this.setState({add_article: false, hasError: false})
+            this.setState({hasError: false})
         }
     }
 
@@ -68,7 +66,7 @@ class Articles extends Component {
             })
             : api.fetchArticles()
                 .then(articles => {
-                    this.setState({ add_article: false, articles })
+                    this.setState({ articles })
                 })
                 .catch(err => {
                     this.setState({
@@ -76,19 +74,6 @@ class Articles extends Component {
                         error_message: err.message
                     })
                 })
-    }
-
-    saveNewArticle = (article) => {
-            this.setState({
-                articles: [
-                    ...this.state.articles,
-                    article
-                ]
-            })
-    }
-
-    showAddArticleForm = () => {
-        this.setState({ add_article: true })
     }
 }
 

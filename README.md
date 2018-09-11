@@ -18,7 +18,6 @@ Navigate to cloned repository and install all dependencies on your computer:
 
 This will install the following packages:
 
-* axios: ^0.18.0
 * lodash: ^4.17.10
 * moment: ^2.22.2,
 * react: ^16.4.2,

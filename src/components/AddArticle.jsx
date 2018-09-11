@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+import propTypes from 'prop-types';
 
 class AddArticle extends Component {
     state = {
@@ -7,40 +8,41 @@ class AddArticle extends Component {
         article_body: '',
         article_added: false
     }
- render() {
-     return <div className='add_article'>
-         <div>Add article to <strong>{this.props.topic}</strong> topic: </div>
-         <label className='article_label'>Article title: </label><textarea wrap='soft' onChange={this.handleTitleInput} value={this.state.article_title} className='add_article_title'/><br/>
-          <label className='article_label'>Article body: </label><textarea wrap='soft' onChange={this.handleInput} value={this.state.article_body} className='add_article_body' /><br />
+    render() {
+        return <div className='add_article'>
+            <div>Add article to <strong>{this.props.match.params.topic}</strong> topic: </div>
+            <label className='article_label'>Article title: </label><textarea wrap='soft' onChange={this.handleTitleInput} value={this.state.article_title} className='add_article_title' /><br />
+            <label className='article_label'>Article body: </label><textarea wrap='soft' onChange={this.handleInput} value={this.state.article_body} className='add_article_body' /><br />
             {this.state.article_added ? <div className='comment_added' >Your article has been added</div> : null}
             <div><button onClick={this.addArticle} className='submit_comment'>Submit</button></div>
-     </div>
- }
+        </div>
+    }
 
- handleInput = (event) => {
-    this.setState({
-        article_body: event.target.value
-    })
-}
+    handleInput = (event) => {
+        this.setState({
+            article_body: event.target.value
+        })
+    }
 
-handleTitleInput = (event) => {
-    this.setState({
-        article_title: event.target.value
-    })
-}
+    handleTitleInput = (event) => {
+        this.setState({
+            article_title: event.target.value
+        })
+    }
 
- addArticle = () => {
-    if (this.state.article_body !== '' && this.state.article_title !== '') {
-    api.getUserData(this.props.user)
-        .then(user => {
-            const newArticle = {
-                title: this.state.article_title,
-                body: this.state.article_body,
-                created_by: user._id,
-                belongs_to: this.props.topic
-            }
-            api.addNewArticle(this.props.topic, newArticle)
-                .then((article) => {
+    addArticle = () => {
+        if (this.state.article_body !== '' && this.state.article_title !== '') {
+            api.getUserData(this.props.user)
+                .then(user => {
+                    const newArticle = {
+                        title: this.state.article_title,
+                        body: this.state.article_body,
+                        created_by: user._id,
+                        belongs_to: this.props.match.params.topic
+                    }
+                    return api.addNewArticle(this.props.match.params.topic, newArticle)
+                })
+                .then(() => {
                     this.setState({
                         article_added: true,
                         article_body: '',
@@ -51,11 +53,13 @@ handleTitleInput = (event) => {
                             article_added: false
                         })
                     }, 3000)
-                    this.props.saveNewArticle(article.data.article_added)
                 })
-        })
+        }
     }
 }
+
+AddArticle.propTypes = {
+    user: propTypes.string
 }
 
 export default AddArticle;
