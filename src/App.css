@@ -413,7 +413,7 @@ margin: 2vw
   }
 
   @media screen and (max-width:1000px) {
-    body, .article, .user_link, .article_title, .add_art_btn, .comment, .comments_voting, label, .submit_comment, .comment_input, .articles_vote, .comment_added, .delete_button, .article_label, .add_article, .add_article_title, .add_article_body {
+    body, .article, .user_link, .article_title, .add_art_btn, .comment, .comments_voting, label, .submit_comment, .comment_input, .articles_vote, .comment_added, .delete_button, .article_label, .add_article, .add_article_title, .add_article_body, .current_user {
       font-size: 3vw;
     }
 
