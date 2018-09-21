@@ -72,6 +72,7 @@ font-size: 4.5vw;
   border: solid #bdbdbd;
   background-color: white;
   display: grid;
+  font-size: 2.5vw;
   grid-template-areas: 
   'User User User User'
   'Votes Article Article Article'
@@ -106,7 +107,7 @@ font-size: 4.5vw;
 .current_user {
   text-align: right;
   margin: 1vw 1vw 3vw 1vw;
-  font-size: 2vw;
+  font-size: 2.5vw;
 }
 
 .user {
@@ -148,7 +149,7 @@ margin: 1vw 3vw 1vw 0vw;
 .single_article_title {
   text-decoration: none;
   color: black;
-  font-size: 2vw;
+  font-size: 2.5vw;
 }
 
 .article_title:hover {
