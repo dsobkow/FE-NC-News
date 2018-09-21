@@ -270,6 +270,7 @@ margin: 2vw
     padding: 0.5vw 1vw;
     border: solid #bdbdbd;
     cursor: pointer;
+    background: white;
   }
 
   .submit_comment:focus {
