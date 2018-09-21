@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to Northcoders News App! This repository contains interactive React app where user can add comments to articles and articles to topics, vote up or down for both articles and comments and delete his own comments. The app has been deployed to Heroku and you can check it out here https://ds-nc-news.herokuapp.com/
+Welcome to Northcoders News App! This repository contains interactive React app where user can add comments to articles and articles to topics, vote up or down for both articles and comments and delete his own comments. The app has been deployed to Heroku and you can check it out here https://d-nc-news.herokuapp.com/
 
 ## Getting Started
 
