@@ -8,7 +8,7 @@ Welcome to Northcoders News App! This repository contains interactive React app 
 
 Clone this repository using command below:
 
-`$ git clone https://github.com/dotty11/FE2-NC-News`
+`$ git clone https://github.com/dotty11/Front-End-NC-News`
 
 ## Installation 
 
