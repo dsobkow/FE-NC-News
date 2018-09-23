@@ -18,7 +18,7 @@ class Articles extends Component {
         return (
             <div>{this.state.hasError ? <Error message={this.state.error_message}/> :
                 <div>{topic? <NavLink to={`/topics/${topic}/addarticle`}><button className='add_art_btn' onClick={this.showAddArticleForm}>Add new article</button></NavLink> : null}
-               {this.state.articles ? <div className='articles'>
+               {this.state.articles.length !== 0 ? <div className='articles'>
                     {copyOfArticles.sort((a, b) => { return moment.utc(b.created_at).diff(moment.utc(a.created_at)) }).map(article => {
                         const body = article.body.slice(0, 100) + '...';
                         return (
