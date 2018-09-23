@@ -36,7 +36,7 @@ class Articles extends Component {
                                 <p className='topic_info'>{article.belongs_to}</p></div>
                         )
                     })}
-                </div> : <h1>Loading...</h1>}
+                </div> : <h2>Loading...</h2>}
             </div>}</div>
         )
     }
